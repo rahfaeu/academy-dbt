@@ -44,4 +44,15 @@ sources:
 
           - name: modifieddate
             description: Data para partição da tabela.
-            
+
+      - name: countryregion
+        description: Tabela com os dados de países.
+        columns:
+          - name: countryregioncode
+            description: Código do país.
+            tests:
+              - unique
+              - not_null
+
+          - name: country_name
+            description: Nome do país.

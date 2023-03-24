@@ -24,7 +24,7 @@ models:
   academy_dbt:
     staging:
       +materialized: table
-      +schema: person
+      +schema: staging
       person:
         +tags: person
 
