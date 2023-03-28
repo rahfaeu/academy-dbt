@@ -121,3 +121,24 @@ sources:
           
           - name: totaldue
             description: Valor total do pedido com imposto e frete.
+
+      - name: salesorderdetail
+        description: Tabela com detalhes do pedido.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+              - unique              
+              - not_null
+              
+          - name: productid
+            description: Chave estrageira do produto, que é a chave primária da tabela product.
+
+          - name: orderqty
+            description: Quantidade do pedido.
+
+          - name: unitprice
+            description: Preço unitário.
+
+          - name: unitpricediscount
+            description: Desconto unitário.  
