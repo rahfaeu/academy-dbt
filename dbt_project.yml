@@ -17,6 +17,15 @@ clean-targets:
   - "target"
   - "dbt_packages"
 
+# models:
+#   +persist_docs:
+#     relation: true
+#     columns: true
+#   sap_adw:
+#     +database: person
+#     staging:
+#         +schema: stg
+
 models:
   +persist_docs:
     relation: true
@@ -25,8 +34,7 @@ models:
     staging:
       +materialized: table
       +schema: staging
-      person:
-        +tags: person
+
 
 seeds:
   academy_dbt:
