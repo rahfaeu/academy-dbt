@@ -1,0 +1,144 @@
+version: 2
+
+sources:
+  - name: sap_adw
+    description: Banco de dados do SAP AdventureWorks para a execução do desafio de Analytics Egineer da Indicium Academy.
+    schema: sap_adw
+    tables:      
+      # Tabela utilizada na composição da dimensão de cartão de crédito
+      - name: creditcard
+        description: Tabela com os dados de cartão de crédito que se relaciona com a `salesorderheader`.
+        columns:
+          - name: creditcardid
+            description: Chave primária da tabela.
+            tests:
+              - unique
+              - not_null
+
+          - name: cardtype
+            description: Tipo do cartão referente ao creditcardid.
+      
+      # Tabelas utilizada na composição da dimensão de cliente
+      - name: person
+        description: Tabela com dados pessoais do cliente relacionada a `salesorderheader`.
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela.
+            tests:
+             - unique
+             - not_null
+
+          - name: firstname
+            description: Nome.
+            tests:
+              - not_null        
+
+          - name: lastname
+            description: Sobrenome.
+            tests:
+              - not_null
+      
+      - name: customer
+        description: Tabela com dados do pedido do cliente relacionada a `salesorderheader`.
+        columns:
+          - name: customerid
+            description: Chave primária da tabela.
+            tests:
+             - unique
+             - not_null
+
+          - name: personid
+            description: Chave estrangeira da tabela person.
+
+          - name: storeid
+            description: Chave estrangeira da tabela store.
+            
+          - name: territoryid
+            description: Chave estrangeira da tabela salesterritory.
+
+      # Tabelas utilizada na composição do motivo da venda
+      - name: salesorderheadersalesreason
+        description: Tabela com dados do motivo de venda relacionada a `salesorderheader`.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+             - not_null
+
+          - name: salesreasonid
+            description: Chave estrangeira da tabela `salesreason`.
+
+      - name: salesreason
+        description: Tabela com motivo de venda.
+        columns:
+          - name: salesreasonid
+            description: Chave primária da tabela.
+            tests:
+              - not_null
+
+          - name: name
+            description: Nome do motivo de venda.
+
+          - name: reasontype
+            description: Tipo do motivo de venda.
+
+      # Tabelas utilizada na composição das tabelas fatos dos pedidos
+      - name: salesorderheader
+        description: Tabela com o cabeçalho dos pedidos.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+              - unique              
+              - not_null
+
+          - name: customerid
+            description: Chave estrangeira da fato, que é a chave primária da tabela `stg_sap_adw_customer`.
+          
+          - name: territoryid
+            description: Chave estrangeira da tabela território, presente na tabela `stg_sap_adw_customer`.
+          
+          - name: shiptoaddressid
+            description: Id do endereço de entrega.
+          
+          - name: creditcardid
+            description: Id do cartão de crédito.
+          
+          - name: orderdate
+            description: Data do pedido.
+          
+          - name: duedate
+            description: Data de vencimento.
+          
+          - name: shipdate
+            description: Data de envio do pedido.
+
+          - name: status
+            description: Status do pedido
+          
+          - name: subtotal
+            description: Valor do pedido sem imposto e frete.
+          
+          - name: totaldue
+            description: Valor total do pedido com imposto e frete.
+
+      - name: salesorderdetail
+        description: Tabela com detalhes do pedido.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+              - unique              
+              - not_null
+              
+          - name: productid
+            description: Chave estrageira do produto, que é a chave primária da tabela product.
+
+          - name: orderqty
+            description: Quantidade do pedido.
+
+          - name: unitprice
+            description: Preço unitário.
+
+          - name: unitpricediscount
+            description: Desconto unitário.  

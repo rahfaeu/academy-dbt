@@ -1,0 +1,58 @@
+version: 2
+
+sources:
+  - name: sap_adw
+    description: Banco de dados do SAP AdventureWorks para a execução do desafio de Analytics Egineer da Indicium Academy.
+    schema: sap_adw
+    tables:      
+      # Tabelas que serão utilizadas para compor a dimensão de endereço
+      - name: address
+        description: Tabela de endereço.
+        columns:
+          - name: addressid
+            description: Chave primária da tabela.
+            tests:
+              - unique
+              - not_null
+
+          - name: stateprovinceid
+            description: Chave estrangeira da tabela `stateprovince`.
+          - name: city
+          
+            description: Nome da cidade.
+            
+          - name: modifieddate
+            description: Data para partição da tabela.
+
+      - name: stateprovince
+        description: Tabela com os dados de estados.
+        columns:
+          - name: stateprovinceid
+            description: Chave primária da tabela.
+            tests:
+              - unique
+              - not_null
+
+          - name: countryregioncode
+            description: Chave estrangeira da tabela countryregion.
+
+          - name: name
+            description: Nome do estado.
+
+          - name: territoryid
+            description: Id do território do estado.
+
+          - name: modifieddate
+            description: Data para partição da tabela.
+
+      - name: countryregion
+        description: Tabela com os dados de países.
+        columns:
+          - name: countryregioncode
+            description: Código do país.
+            tests:
+              - unique
+              - not_null
+
+          - name: country_name
+            description: Nome do país.
