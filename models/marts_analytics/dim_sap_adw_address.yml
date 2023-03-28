@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: dim_sap_adw_address
+    columns:
+      - name: address_sk
+        description: Chave substituta para o `address_id`.
+        tests:
+          - unique
+          - not_null
+
+      - name: address_id
+        description: Chave primária da tabela de origem `address`.
+
+      - name: address_city
+        description: Nome da cidade.
+      
+      - name: state_province_country_region_code
+        description: Código do país.
+
+      - name: state_province_name
+        description: Nome do estado.
+
+      - name: state_province_territory_id
+        description: Id do território do estado.
+
+      - name: country_region_name
+        description: Nome do país.
