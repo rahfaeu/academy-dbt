@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: dim_sap_adw_customer
+    columns:
+      - name: customer_sk
+        description: Chave substituta para o customer_id.
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Chave primária da tabela de origem `customer`.
+
+      - name: customer_name
+        description: Nome completo do cliente.
+      
+      - name: customer_territory_id
+        description: Id do território do cliente.
