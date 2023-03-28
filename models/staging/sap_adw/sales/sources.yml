@@ -49,3 +49,14 @@ sources:
             description: Chave estrangeira da tabela store.
           - name: territoryid
             description: Chave estrangeira da tabela salesterritory.
+
+      # Tabelas utilizada na composição do motivo da venda
+      - name: salesorderheadersalesreason
+        description: Tabela com dados do motivo de venda relacionada a `salesorderheader`.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+             - not_null
+          - name: salesreasonid
+            description: Chave estrangeira da tabela `salesreason`.
