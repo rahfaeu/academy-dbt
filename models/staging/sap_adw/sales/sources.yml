@@ -14,6 +14,7 @@ sources:
             tests:
               - unique
               - not_null
+
           - name: cardtype
             description: Tipo do cartão referente ao creditcardid.
       
@@ -26,10 +27,12 @@ sources:
             tests:
              - unique
              - not_null
+
           - name: firstname
             description: Nome.
             tests:
-              - not_null              
+              - not_null        
+
           - name: lastname
             description: Sobrenome.
             tests:
@@ -43,10 +46,13 @@ sources:
             tests:
              - unique
              - not_null
+
           - name: personid
             description: Chave estrangeira da tabela person.
+
           - name: storeid
             description: Chave estrangeira da tabela store.
+            
           - name: territoryid
             description: Chave estrangeira da tabela salesterritory.
 
@@ -58,6 +64,7 @@ sources:
             description: Chave primária da tabela.
             tests:
              - not_null
+
           - name: salesreasonid
             description: Chave estrangeira da tabela `salesreason`.
 
@@ -68,7 +75,46 @@ sources:
             description: Chave primária da tabela.
             tests:
               - not_null
+
           - name: name
             description: Nome do motivo de venda.
+
           - name: reasontype
             description: Tipo do motivo de venda.
+
+      # Tabelas utilizada na composição das tabelas fatos dos pedidos
+      - name: salesorderheader
+        description: Tabela com o cabeçalho dos pedidos.
+        columns:
+          - name: salesorderid
+            description: Chave primária da tabela.
+            tests:
+              - unique              
+              - not_null
+
+          - name: customerid
+            description: Chave estrangeira da fato, que é a chave primária da tabela `stg_sap_adw_customer`.
+          
+          - name: territoryid
+            description: Chave estrangeira da tabela território, presente na tabela `stg_sap_adw_customer`.
+          
+          - name: shiptoaddressid
+            description: Id do endereço de entrega.
+          
+          - name: creditcardid
+            description: Id do cartão de crédito.
+          
+          - name: orderdate
+            description: Data do pedido.
+          
+          - name: duedate
+            description: Data de vencimento.
+          
+          - name: shipdate
+            description: Data de envio do pedido.
+
+          - name: status
+            description: Status do pedido
+          
+          - name: subtotal
+            description: Valor do pedido sem imposto e frete.
