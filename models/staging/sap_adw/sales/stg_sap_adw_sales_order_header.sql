@@ -27,7 +27,8 @@ with
             , date(parse_timestamp('%Y-%m-%d %H:%M:%E*S', duedate)) as sales_order_header_due_date
             , date(parse_timestamp('%Y-%m-%d %H:%M:%E*S', shipdate)) as sales_order_header_ship_date
             , cast(status as int64) as sales_order_header_status
-            , cast(subtotal	as float64)	as sales_order_header_subtotal
+            , cast(subtotal	as float64)	as sales_order_header_sub_total
+            , cast(totaldue as float64) as sales_order_header_total_due
             , date(parse_timestamp('%Y-%m-%d %H:%M:%E*S', modifieddate)) as modified_date
         from {{source('sap_adw','salesorderheader')}}
     )

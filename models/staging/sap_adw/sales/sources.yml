@@ -118,3 +118,6 @@ sources:
           
           - name: subtotal
             description: Valor do pedido sem imposto e frete.
+          
+          - name: totaldue
+            description: Valor total do pedido com imposto e frete.
