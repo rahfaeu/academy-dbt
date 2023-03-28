@@ -18,7 +18,7 @@
 with
     source_person as(
         select
-            cast(businessentityid as int) as person_business_entity_id
+            cast(businessentityid as int64) as person_business_entity_id
             --, persontype
             --, namestyle
             --, title

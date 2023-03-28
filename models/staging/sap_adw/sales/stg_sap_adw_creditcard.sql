@@ -17,7 +17,7 @@
 with
     source_creditcard as(
         select
-            cast(creditcardid as int) as credit_card_id
+            cast(creditcardid as int64) as credit_card_id
             , cast(cardtype as string) as credit_card_type
             --, cardnumber
             --, expmonth
