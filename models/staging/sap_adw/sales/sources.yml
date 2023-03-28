@@ -7,7 +7,7 @@ sources:
     tables:      
       # Tabela utilizada na composição da dimensão de cartão de crédito
       - name: creditcard
-        description: Tabela com os dados de cartão de crédito, que se relaciona com a salesorderheader.
+        description: Tabela com os dados de cartão de crédito que se relaciona com a `salesorderheader`.
         columns:
           - name: creditcardid
             description: Chave primária da tabela.

@@ -1,0 +1,15 @@
+version: 2
+
+sources:
+  - name: sap_adw
+    description: Banco de dados do SAP AdventureWorks para a execução do desafio de Analytics Egineer da Indicium Academy.
+    schema: sap_adw
+    tables: 
+      # Tabela utilizada na composição da dimensão produto
+      - name: product
+        description: Tabela com informações do produto que se relaciona com a `salesorderheader`.
+        columns:
+          - name: productid
+            description: Chave primária da tabela.
+          - name: name
+            description: Nome do produto.
