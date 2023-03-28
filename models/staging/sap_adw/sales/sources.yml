@@ -19,7 +19,7 @@ sources:
       
       # Tabelas utilizada na composição da dimensão de cliente
       - name: person
-        description: Tabela com dados pessoais do cliente, conectada a `salesorderheader`
+        description: Tabela com dados pessoais do cliente relacionada a `salesorderheader`.
         columns:
           - name: businessentityid
             description: Chave primária da tabela.
@@ -34,3 +34,18 @@ sources:
             description: Sobrenome.
             tests:
               - not_null
+      
+      - name: customer
+        description: Tabela com dados do pedido do cliente relacionada a `salesorderheader`.
+        columns:
+          - name: customerid
+            description: Chave primária da tabela.
+            tests:
+             - unique
+             - not_null
+          - name: personid
+            description: Chave estrangeira da tabela person.
+          - name: storeid
+            description: Chave estrangeira da tabela store.
+          - name: territoryid
+            description: Chave estrangeira da tabela salesterritory.
