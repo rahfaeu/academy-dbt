@@ -60,3 +60,15 @@ sources:
              - not_null
           - name: salesreasonid
             description: Chave estrangeira da tabela `salesreason`.
+
+      - name: salesreason
+        description: Tabela com motivo de venda.
+        columns:
+          - name: salesreasonid
+            description: Chave primária da tabela.
+            tests:
+              - not_null
+          - name: name
+            description: Nome do motivo de venda.
+          - name: reasontype
+            description: Tipo do motivo de venda.
