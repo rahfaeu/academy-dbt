@@ -4,7 +4,7 @@ models:
   - name: dim_sap_adw_customer
     columns:
       - name: customer_sk
-        description: Chave substituta para o customer_id.
+        description: Chave substituta para o `customer_id`.
         tests:
           - unique
           - not_null
