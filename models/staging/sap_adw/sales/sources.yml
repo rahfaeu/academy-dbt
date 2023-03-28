@@ -5,7 +5,7 @@ sources:
     description: Banco de dados do SAP AdventureWorks para a execução do desafio de Analytics Egineer da Indicium Academy.
     schema: sap_adw
     tables:      
-      # Tabela usada na composição da dimensão de cartão de crédito
+      # Tabela utilizada na composição da dimensão de cartão de crédito
       - name: creditcard
         description: Tabela com os dados de cartão de crédito, que se relaciona com a salesorderheader.
         columns:
@@ -16,3 +16,21 @@ sources:
               - not_null
           - name: cardtype
             description: Tipo do cartão referente ao creditcardid.
+      
+      # Tabelas utilizada na composição da dimensão de cliente
+      - name: person
+        description: Tabela com dados pessoais do cliente, conectada a `salesorderheader`
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela.
+            tests:
+             - unique
+             - not_null
+          - name: firstname
+            description: Nome.
+            tests:
+              - not_null              
+          - name: lastname
+            description: Sobrenome.
+            tests:
+              - not_null
