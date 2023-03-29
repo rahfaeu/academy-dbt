@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: dim_sap_adw_credit_card
+    description: Dimensão com as informações de cartão de crédito.
+    columns:
+      - name: credit_card_sk
+        description: Chave substituta do id do cartão de crédito.
+        tests:
+          - unique
+          - not_null
+      
+      - name: credit_card_id
+        description: Chave primária da tabela.
+
+      - name: credit_card_type
+        description: Tipo do cartão de crédito.

@@ -56,6 +56,21 @@ sources:
           - name: territoryid
             description: Chave estrangeira da tabela salesterritory.
 
+      - name: store
+        description: Tabela com detalhes do pedido.
+        columns:
+          - name: businessentityid
+            description: Chave primária da tabela.
+            tests:
+              - unique              
+              - not_null
+          
+          - name: name
+            description: Nome da loja.
+
+          - name: salespersonid
+            description: Id da cliente da loja.
+
       # Tabelas utilizada na composição do motivo da venda
       - name: salesorderheadersalesreason
         description: Tabela com dados do motivo de venda relacionada a `salesorderheader`.
@@ -141,4 +156,4 @@ sources:
             description: Preço unitário.
 
           - name: unitpricediscount
-            description: Desconto unitário.  
+            description: Desconto unitário.
