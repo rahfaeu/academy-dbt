@@ -1,9 +1,14 @@
 {{ config(
-    cluster_by = [
-        'address_id'
-        , 'address_city'
-        , 'state_province_name'
-        , 'country_region_name'
+    materialized = 'table'
+    , partition_by = {
+        'field': 'date'
+        , 'data_type': 'date'
+    }
+    , cluster_by = [
+        'date_id'
+        , 'year_date'
+        , 'month_date'
+        , 'year_week'
     ]
 ) }}
 
