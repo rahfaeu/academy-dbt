@@ -1,0 +1,11 @@
+version: 2
+
+models:
+  - name: dim_conformed_date
+    description: Tabela dimensão de datas.
+    columns:
+      - name: date_id
+        description: Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
