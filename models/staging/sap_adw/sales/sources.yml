@@ -110,8 +110,11 @@ sources:
           - name: customerid
             description: Chave estrangeira da fato, que é a chave primária da tabela `stg_sap_adw_customer`.
           
-          - name: territoryid
-            description: Chave estrangeira da tabela território, presente na tabela `stg_sap_adw_customer`.
+          - name: sales_order_header_ship_to_address_id
+            description: Id do endereço de entrega.
+
+          - name: sales_order_header_bill_to_address_id
+            description: Id do endereço de cobrança.
           
           - name: shiptoaddressid
             description: Id do endereço de entrega.
