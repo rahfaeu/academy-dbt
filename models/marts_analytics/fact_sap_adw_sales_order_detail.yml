@@ -2,54 +2,68 @@ version: 2
 
 models:
   - name: fact_sap_adw_sales_order_detail
+    description: Tabela fato de vendas composta por cabeçalho e detalhes do pedido.
+    # Não realizei testes de relationships em todas as colunas para não gerar tanto processamento de leitura.
+
     columns:
-      - name: sales_order_detail_sales_order_sk
-        description: Chave substituta para o `sales_order_detail_sales_order_id`.
+      - name: sales_order_detail_sales_order_item_sk
+        description: Chave substituta para cada item do pedido.
         tests:
           - unique
           - not_null
 
-      # - name: sales_order_detail_sales_order_id
-      #   description: Chave primária da tabela de origem `salesorderdetail`.
+      - name: sales_order_detail_sales_order_id
+        description: Chave primária da tabela de origem `salesorderdetail`.
 
-      # - name: sales_order_header_customer_id
-      #   description: Id do Cliente - Chave primária da tabela `customer`.
+      - name: customer_fk
+        description: Chave estrangeira para o id do cliente - Chave primária da tabela `dim_customer`.
+        tests:
+          - relationships:
+              to: ref('dim_customer')
+              field: customer_sk
       
-      # - name: sales_order_header_territory_id
-      #   description: Descrição do tipo do motivo da compra.
+      - name: ship_address_fk
+        description: Chave estrangeira para o id do endereço de entrega - Chave primária da tabela `dim_address`.
+        tests:
+          - relationships:
+              to: ref('dim_address')
+              field: address_sk
 
-      # - name: sales_order_header_ship_to_address_id
-      #   description: Descrição do tipo do motivo da compra.
+      - name: bill_address_fk
+        description: Chave estrangeira para o id do endereço de cobrança - Chave primária da tabela `dim_address`.
 
-      # - name: sales_order_header_credit_card_id
-      #   description: Descrição do tipo do motivo da compra.
+      - name: credit_card_fk
+        description: Chave estrangeira para o id do cartão de crédito - Chave primária da tabela `dim_credit_card`.
 
-      # - name: sales_order_header_order_date
-      #   description: Descrição do tipo do motivo da compra.
+      - name: product_fk
+        description: Chave estrangeira para o id do produto - Chave primária da tabela `dim_product`.
+
+      - name: sales_reason_sales_order_fk
+        description: Chave estrangeira para o id do motivo da venda - Chave primária da tabela `dim_sales_reason`.
+
+      - name: sales_order_header_order_date
+        description: Data do pedido, também utilizada para a partição da tabela.
       
-      # - name: sales_order_header_due_date
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_header_due_date
+        description: Data de vencimento do pagamento.
       
-      # - name: sales_order_header_ship_date
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_header_ship_date
+        description: Data da entrega.
       
-      # - name: sales_order_header_status
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_header_status
+        description: Status da venda.
       
-      # - name: sales_order_detail_product_id
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_detail_order_quantity
+        description: Quantidade do produto.
       
-      # - name: sales_order_detail_order_quantity
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_detail_unit_price
+        description: Preço unitário do produto.
       
-      # - name: sales_order_detail_unit_price
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_detail_unit_price_discount
+        description: Percentual de desconto por produto e por cada unidade.
       
-      # - name: sales_order_detail_unit_price_discount
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_detail_sales_gross_value
+        description: Valor total por produto sem desconto.
       
-      # - name: sales_order_header_sub_total
-      #   description: Descrição do tipo do motivo da compra.
-      
-      # - name: sales_order_header_total_due
-      #   description: Descrição do tipo do motivo da compra.
+      - name: sales_order_detail_sales_net_value
+        description: Valor líquido por produto com o desconto aplicado.
